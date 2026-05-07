@@ -1,104 +1,484 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Citlaly Cedeno Portfolio</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f7f1ff, #efe5ff);
+      color: #3f2b63;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      width: 95%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 20px;
+      padding: 18px 30px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      box-shadow: 0 5px 20px rgba(128, 90, 213, 0.1);
+    }
+
+    nav h1 {
+      color: #6d3fd1;
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #6d3fd1;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #b388ff;
+    }
+
+    /* HERO */
 
     header {
-      background: #1f2937;
-      color: white;
-      padding: 40px;
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+
+      background: linear-gradient(135deg, #b388ff, #8e63e6);
+      border-radius: 35px;
+
+      padding: 90px 40px;
       text-align: center;
+      color: white;
+
+      position: relative;
+      overflow: hidden;
+
+      box-shadow: 0 10px 30px rgba(128, 90, 213, 0.2);
     }
 
-    section {
-      max-width: 900px;
-      margin: 30px auto;
+    header::before {
+      content: "✦";
+      position: absolute;
+      top: 40px;
+      left: 70px;
+      font-size: 35px;
+      opacity: 0.5;
+    }
+
+    header::after {
+      content: "♡";
+      position: absolute;
+      right: 80px;
+      top: 70px;
+      font-size: 40px;
+      opacity: 0.5;
+    }
+
+    header h2 {
+      font-size: 65px;
+      margin-bottom: 15px;
+    }
+
+    header h3 {
+      font-size: 34px;
+      margin-bottom: 20px;
+      color: #f7d7ff;
+    }
+
+    header p {
+      font-size: 22px;
+      opacity: 0.95;
+    }
+
+    .button-container {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-button {
+      padding: 14px 28px;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: 0.3s;
+    }
+
+    .hero-button:hover {
       background: white;
-      padding: 25px;
-      border-radius: 12px;
+      color: #8e63e6;
+    }
+
+    /* SECTION */
+
+    section {
+      width: 95%;
+      max-width: 1150px;
+
+      margin: 35px auto;
+      padding: 40px;
+
+      background: rgba(255,255,255,0.75);
+
+      border-radius: 30px;
+
+      backdrop-filter: blur(10px);
+
+      box-shadow: 0 5px 25px rgba(128, 90, 213, 0.08);
+    }
+
+    section h2 {
+      font-size: 40px;
+      margin-bottom: 25px;
+      color: #6d3fd1;
+    }
+
+    section p {
+      line-height: 1.8;
+      font-size: 19px;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
     }
 
     .project {
-      border: 1px solid #ddd;
-      padding: 18px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      background: #ffffff;
+      border: 2px solid #eadcff;
+
+      padding: 30px;
+      border-radius: 25px;
+
+      transition: 0.3s;
+
+      box-shadow: 0 5px 15px rgba(128, 90, 213, 0.08);
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(128, 90, 213, 0.15);
     }
 
     .project h3 {
-      margin-top: 0;
+      margin-bottom: 18px;
+      color: #5f2cc8;
+      font-size: 28px;
     }
 
-    a {
-      color: #2563eb;
+    .project p {
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-top: 10px;
+
+      padding: 12px 20px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+      background: #b388ff;
+      color: white;
+
+      font-weight: bold;
+
+      transition: 0.3s;
+    }
+
+    .project a:hover {
+      background: #8e63e6;
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .skill {
+      background: #f0e5ff;
+      color: #6d3fd1;
+
+      padding: 12px 18px;
+
+      border-radius: 999px;
+
+      font-weight: bold;
+
+      border: 2px solid #e2d0ff;
+    }
+
+    /* CONTACT */
+
+    .contact-links p {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .contact-links a {
+      color: #7b4de2;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .contact-links a:hover {
+      color: #b388ff;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: #8e63e6;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 768px) {
+
+      nav {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      header h2 {
+        font-size: 42px;
+      }
+
+      header h3 {
+        font-size: 24px;
+      }
+
+      section h2 {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <nav>
+    <h1>✦ Citlaly Cedeno</h1>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
   <header>
-    <h1>Citlaly Cedeno</h1>
-    <h2>IT & Cybersecurity Student</h2>
-    <p>Networking • Cloud • Endpoint Management • Technical Support</p>
+
+    <h2>Citlaly Cedeno ♡</h2>
+
+    <h3>IT & Cybersecurity Student</h3>
+
+    <p>
+      Networking • Cloud • Endpoint Management • Technical Support
+    </p>
+
+    <div class="button-container">
+      <a class="hero-button" href="#">
+        Download Resume
+      </a>
+
+      <a class="hero-button" href="https://github.com/citlalycedeno">
+        View GitHub
+      </a>
+    </div>
+
   </header>
 
-  <section>
-    <h2>About Me</h2>
+  <section id="about">
+
+    <h2>♡ About Me</h2>
+
     <p>
       I am an IT and cybersecurity student with hands-on experience in technical support,
-      networking labs, cloud computing, and endpoint management.
+      networking labs, cloud computing, endpoint management, and troubleshooting.
+      I enjoy learning new technologies and building secure, efficient systems.
     </p>
+
   </section>
 
-  <section>
-    <h2>Projects</h2>
+  <section id="projects">
 
-    <div class="project">
-      <h3>Cisco Packet Tracer VLAN Lab</h3>
-      <p>
-        Configured VLANs, trunk links, IP addressing, and connectivity testing
-        in a simulated enterprise network.
-      </p>
-      <p><strong>Skills:</strong> VLANs, trunking, subnetting, Cisco IOS, troubleshooting</p>
-      <a href="#">View Project</a>
+    <h2>✦ Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project">
+
+        <h3>Cisco Packet Tracer VLAN Lab</h3>
+
+        <p>
+          Configured VLANs, trunk links, IP addressing, and connectivity testing
+          in a simulated enterprise network.
+        </p>
+
+        <p>
+          <strong>Skills:</strong>
+          VLANs, trunking, subnetting, Cisco IOS, troubleshooting
+        </p>
+
+        <a href="#">
+          View Project
+        </a>
+
+      </div>
+
+      <div class="project">
+
+        <h3>AWS Cloud Labs</h3>
+
+        <p>
+          Completed AWS labs involving cloud storage, compute, IAM, networking,
+          and security concepts.
+        </p>
+
+        <p>
+          <strong>Skills:</strong>
+          AWS, IAM, EC2, S3, VPC, cloud security
+        </p>
+
+        <a href="#">
+          View Project
+        </a>
+
+      </div>
+
+      <div class="project">
+
+        <h3>Microsoft Intune / Entra Lab</h3>
+
+        <p>
+          Practiced device enrollment, identity management, endpoint security,
+          and cloud-based device administration.
+        </p>
+
+        <p>
+          <strong>Skills:</strong>
+          Intune, Entra ID, endpoint management, Windows administration
+        </p>
+
+        <a href="#">
+          View Project
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="project">
-      <h3>AWS Cloud Labs</h3>
-      <p>
-        Completed AWS labs involving cloud storage, compute, IAM, networking,
-        and security concepts.
-      </p>
-      <p><strong>Skills:</strong> AWS, IAM, EC2, S3, VPC, cloud security</p>
-      <a href="#">View Project</a>
-    </div>
-
-    <div class="project">
-      <h3>Microsoft Intune / Entra Lab</h3>
-      <p>
-        Practiced device enrollment, identity management, endpoint security,
-        and cloud-based device administration.
-      </p>
-      <p><strong>Skills:</strong> Intune, Entra ID, endpoint management, Windows administration</p>
-      <a href="#">View Project</a>
-    </div>
   </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: your-email@example.com</p>
-    <p>GitHub: <a href="https://github.com/citlalycedeno">github.com/citlalycedeno</a></p>
-    <p>LinkedIn: <a href="#">Add your LinkedIn link here</a></p>
+  <section id="skills">
+
+    <h2>♡ Technical Skills</h2>
+
+    <div class="skills">
+
+      <div class="skill">Networking</div>
+      <div class="skill">VLANs</div>
+      <div class="skill">Cisco IOS</div>
+      <div class="skill">TCP/IP</div>
+      <div class="skill">AWS</div>
+      <div class="skill">Cloud Computing</div>
+      <div class="skill">Intune</div>
+      <div class="skill">Entra ID</div>
+      <div class="skill">Python</div>
+      <div class="skill">Windows Admin</div>
+      <div class="skill">Troubleshooting</div>
+      <div class="skill">Technical Support</div>
+
+    </div>
+
   </section>
+
+  <section id="contact">
+
+    <h2>✦ Contact</h2>
+
+    <div class="contact-links">
+
+      <p>
+        Email:
+        <a href="mailto:your-email@example.com">
+          your-email@example.com
+        </a>
+      </p>
+
+      <p>
+        GitHub:
+        <a href="https://github.com/citlalycedeno">
+          github.com/citlalycedeno
+        </a>
+      </p>
+
+      <p>
+        LinkedIn:
+        <a href="#">
+          Add your LinkedIn here
+        </a>
+      </p>
+
+    </div>
+
+  </section>
+
+  <footer>
+    ♡ Made with lots of coffee & purple ♡
+  </footer>
+
 </body>
 </html>

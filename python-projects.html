@@ -158,6 +158,7 @@
   </script>
 
 <hr class="divider">
+  
 
 <!--==================-->
 <!--== HANGMAN GAME ==-->
@@ -261,25 +262,29 @@ if (guess.length > 1) {
 
   else {
 
-    wrongGuesses++;
+  wrongGuesses++;
+
+  if (wrongGuesses < hangmanArt.length) {
 
     document.getElementById("hangmanArt").innerText =
       hangmanArt[wrongGuesses];
 
-    if (wrongGuesses >= hangmanArt.length - 1) {
-
-      document.getElementById("hangmanMessage").innerText =
-        "You lose! The word was " + answer + ".";
-
-    }
-
-    else {
-
-      document.getElementById("hangmanMessage").innerText =
-        "Wrong word guess!";
-
-    }
   }
+
+  if (wrongGuesses >= hangmanArt.length - 1) {
+
+    document.getElementById("hangmanMessage").innerText =
+      "You lose! The word was " + answer + ".";
+
+  }
+
+  else {
+
+    document.getElementById("hangmanMessage").innerText =
+      "Wrong word guess!";
+
+  }
+}
 
   document.getElementById("letterInput").value = "";
 
@@ -312,7 +317,10 @@ if (guess.length > 1) {
         "Wrong guess!";
     }
 
-    document.getElementById("hangmanArt").innerText = hangmanArt[wrongGuesses];
+    if (wrongGuesses < hangmanArt.length) {
+  document.getElementById("hangmanArt").innerText =
+    hangmanArt[wrongGuesses];
+}
     document.getElementById("wordDisplay").innerText = hint.join(" ");
     document.getElementById("guessedLetters").innerText = guessedLetters.join(", ");
     document.getElementById("letterInput").value = "";

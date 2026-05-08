@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Random Number Guessing Game</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f1ff;
+      color: #3f2b63;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(128,90,213,0.1);
+    }
+    .divider {
+     border: none;
+     height: 2px;
+     background: #d9c2ff;
+     margin: 40px 0;
+     border-radius: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #b388ff;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+<!--===================-->
+<!--== GUESSING GAME ==-->
+<!--===================-->
+
+    <h1>Random Number Guessing Game</h1>
+
+    <p>
+      This project is based on a Python random number guessing game I created.
+      The game generates a random number between 1 and 100 and gives the user
+      hints until the correct number is guessed.
+    </p>
+
+    <hr class="divider">
+
+    <input type="number"
+           id="guessInput"
+           placeholder="Enter a number between 1 and 100">
+
+    <button onclick="checkGuess()">
+      Submit Guess
+    </button>
+
+    <button onclick="restartGame()">
+      Restart Game
+    </button>
+
+    <p id="message"></p>
+
+  </div>
+
+  <script>
+
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    let guessCount = 0;
+
+    function checkGuess() {
+
+      let guess = Number(document.getElementById("guessInput").value);
+
+      guessCount++;
+
+      if (guess > randomNumber) {
+
+        document.getElementById("message").innerText =
+          "Your guess is too high!";
+
+      }
+
+      else if (guess < randomNumber) {
+
+        document.getElementById("message").innerText =
+          "Your guess is too low!";
+
+      }
+
+      else {
+
+        document.getElementById("message").innerText =
+          `Correct! The number was ${randomNumber}. Guesses: ${guessCount}`;
+
+      }
+    }
+
+    function restartGame() {
+
+      randomNumber = Math.floor(Math.random() * 100) + 1;
+
+      guessCount = 0;
+
+      document.getElementById("message").innerText =
+        "New random number generated!";
+
+      document.getElementById("guessInput").value = "";
+
+    }
+
+  </script>
+
+<hr class="divider">
+
+</body>
+</html>

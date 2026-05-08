@@ -20,14 +20,35 @@
       border-radius: 25px;
       box-shadow: 0 5px 20px rgba(128,90,213,0.1);
     }
+    
     .divider {
-     border: none;
-     height: 2px;
-     background: #d9c2ff;
-     margin: 40px 0;
-     border-radius: 10px;
+      border: none;
+      height: 2px;
+      background: #d9c2ff;
+      margin: 40px 0;
+      border-radius: 10px;        
     }
-
+    
+    .game-box {
+      background: #f7f1ff;
+      padding: 25px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    
+     pre {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      border: 2px solid #d9c2ff;
+      border-radius: 10px;
+    }  
     button {
       margin-top: 15px;
       padding: 12px 20px;
@@ -37,17 +58,19 @@
       border-radius: 12px;
       cursor: pointer;
     }
-
-    input {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
+    button:hover {
+      background: #8e63e6;
     }
-
+    #wordDisplay {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+    }
     #message {
       margin-top: 20px;
       font-weight: bold;
     }
+    
   </style>
 </head>
 
@@ -64,7 +87,8 @@
     <p>
       This project is based on a Python random number guessing game I created.
       The game generates a random number between 1 and 100 and gives the user
-      hints until the correct number is guessed.
+      hints until the correct number is guessed. After guessing, the number resets
+      so the user can play again.
     </p>
 
     <hr class="divider">
@@ -134,6 +158,182 @@
   </script>
 
 <hr class="divider">
+
+<!--==================-->
+<!--== HANGMAN GAME ==-->
+<!--==================-->
+
+<h2>Halloween Hangman Game</h2>
+
+<p>
+  This project is based on a Python Hangman game I created. The game randomly selects 
+  a Halloween-themed word (halloween, pumpkin, spooky, witch, ghost, haunted) and lets 
+  the user guess one letter at a time or guess the full word. It tracks incorrect guesses,
+  prevents duplicate guesses, and displays a win or lose message based on the player’s guesses.
+</p>
+
+<hr class="divider">
+
+<div class="game-box">
+
+  <pre id="hangmanArt">
+   
+   
+   
+  </pre>
+
+  <p id="wordDisplay">_ _ _ _ _</p>
+
+  <input type="text"
+         id="letterInput"
+         placeholder="Enter a letter or full word">
+
+  <button onclick="guessLetter()">
+    Guess
+  </button>
+
+  <button onclick="restartHangman()">
+    Restart Game
+  </button>
+
+  <p id="hangmanMessage"></p>
+
+  <p>
+    Guessed Letters:
+    <span id="guessedLetters"></span>
+  </p>
+
+</div>
+
+<script>
+  const words = ["halloween", "pumpkin", "spooky", "witch", "ghost", "haunted"];
+
+  const hangmanArt = [
+    "   \n   \n   ",
+    " o \n   \n   ",
+    " o \n | \n   ",
+    " o \n/| \n   ",
+    " o \n/|\\\n   ",
+    " o \n/|\\\n/  ",
+    " o \n/|\\\n/ \\"
+  ];
+
+  let answer = "";
+  let hint = [];
+  let wrongGuesses = 0;
+  let guessedLetters = [];
+
+  function startHangman() {
+    answer = words[Math.floor(Math.random() * words.length)];
+    hint = Array(answer.length).fill("_");
+    wrongGuesses = 0;
+    guessedLetters = [];
+
+    document.getElementById("hangmanArt").innerText = hangmanArt[wrongGuesses];
+    document.getElementById("wordDisplay").innerText = hint.join(" ");
+    document.getElementById("guessedLetters").innerText = "";
+    document.getElementById("hangmanMessage").innerText = "";
+    document.getElementById("letterInput").value = "";
+  }
+
+  function guessLetter() {
+    let guess = document.getElementById("letterInput").value.toLowerCase().trim();
+
+   if (!guess.match(/^[a-z]+$/)) {
+  document.getElementById("hangmanMessage").innerText =
+    "Invalid input. Enter only letters.";
+  return;
+}
+
+if (guess.length > 1) {
+
+  if (guess === answer) {
+
+    hint = answer.split("");
+
+    document.getElementById("wordDisplay").innerText =
+      hint.join(" ");
+
+    document.getElementById("hangmanMessage").innerText =
+      "You win! The word was " + answer + ".";
+
+  }
+
+  else {
+
+    wrongGuesses++;
+
+    document.getElementById("hangmanArt").innerText =
+      hangmanArt[wrongGuesses];
+
+    if (wrongGuesses >= hangmanArt.length - 1) {
+
+      document.getElementById("hangmanMessage").innerText =
+        "You lose! The word was " + answer + ".";
+
+    }
+
+    else {
+
+      document.getElementById("hangmanMessage").innerText =
+        "Wrong word guess!";
+
+    }
+  }
+
+  document.getElementById("letterInput").value = "";
+
+  return;
+}
+
+    if (guessedLetters.includes(guess)) {
+      document.getElementById("hangmanMessage").innerText =
+        guess + " was already guessed.";
+      return;
+    }
+
+    guessedLetters.push(guess);
+
+    if (answer.includes(guess)) {
+      for (let i = 0; i < answer.length; i++) {
+        if (answer[i] === guess) {
+          hint[i] = guess;
+        }
+      }
+
+      document.getElementById("hangmanMessage").innerText =
+        "Good guess!";
+    }
+
+    else {
+      wrongGuesses++;
+
+      document.getElementById("hangmanMessage").innerText =
+        "Wrong guess!";
+    }
+
+    document.getElementById("hangmanArt").innerText = hangmanArt[wrongGuesses];
+    document.getElementById("wordDisplay").innerText = hint.join(" ");
+    document.getElementById("guessedLetters").innerText = guessedLetters.join(", ");
+    document.getElementById("letterInput").value = "";
+
+    if (!hint.includes("_")) {
+      document.getElementById("hangmanMessage").innerText =
+        "You win! The word was " + answer + ".";
+    }
+
+    else if (wrongGuesses >= hangmanArt.length - 1) {
+      document.getElementById("hangmanMessage").innerText =
+        "You lose! The word was " + answer + ".";
+    }
+  }
+
+  function restartHangman() {
+    startHangman();
+  }
+
+  startHangman();
+</script>
 
 </body>
 </html>

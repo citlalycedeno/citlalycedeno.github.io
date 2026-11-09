@@ -1,573 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Citlaly Cedeno's Portfolio</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0912" />
+  <meta name="description" content="Cybersecurity, cloud, networking, and programming portfolio projects." />
+  <title>Projects | Cybersecurity Portfolio</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      color-scheme: dark;
+      --bg: #0b0912;
+      --panel: #14111e;
+      --panel-hover: #1a1528;
+      --border: #312a42;
+      --text: #f5f3fb;
+      --muted: #b7afc6;
+      --accent: #ad87ff;
+      --accent-strong: #8f63f2;
+      --accent-soft: rgba(173,135,255,.11);
+      --radius: 19px;
+      --shadow: 0 18px 65px rgba(0,0,0,.22);
     }
-
-    html {
-      scroll-behavior: smooth;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: radial-gradient(ellipse 800px 480px at 80% -200px, rgba(133,83,239,.16), transparent 70%), var(--bg); color: var(--text); font: 16px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #cbb0ff; outline-offset: 4px; }
+    .container { width: min(1120px, calc(100% - 44px)); margin-inline: auto; }
+    .topbar { border-bottom: 1px solid rgba(255,255,255,.07); }
+    .nav { display:flex; align-items:center; justify-content:space-between; min-height:77px; gap: 20px; }
+    .brand { font-weight: 800; letter-spacing: -.035em; font-size: 1.1rem; text-decoration: none; }
+    .brand span { color: var(--accent); }
+    .nav-links { display:flex; gap: 25px; align-items:center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .15s; }
+    .nav-links a:hover, .nav-links a[aria-current] { color: var(--text); }
+    main { padding: 70px 0 110px; }
+    .eyebrow { color: var(--accent); display:inline-flex; align-items:center; gap:9px; text-transform: uppercase; font-weight:800; font-size:.72rem; letter-spacing:.17em; }
+    .eyebrow:before { content:""; width:23px; height:2px; background:currentColor; }
+    h1, h2, h3, p { margin-top:0; }
+    h1 { margin: 14px 0 12px; font-size: clamp(2.7rem,6vw,4.4rem); letter-spacing:-.055em; line-height: 1.1; }
+    .accent { color: var(--accent); }
+    .intro { max-width:720px; color: var(--muted); font-size:1.04rem; margin-bottom:0; }
+    .section { margin-top: 67px; scroll-margin-top: 20px; }
+    .section-heading { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 22px; }
+    .section-heading h2 { font-size:clamp(1.35rem,3.2vw,1.8rem); line-height:1.25; letter-spacing:-.035em; margin:0; }
+    .section-heading small { color:#948aab; font-size:.82rem; }
+    .feature { display:grid; grid-template-columns:1.15fr .85fr; overflow:hidden; border: 1px solid #604689; border-radius:24px; background: linear-gradient(110deg, #20172e, #130f1d 75%); box-shadow: var(--shadow); }
+    .feature-content { padding:clamp(26px,4vw,49px); display:flex; flex-direction:column; align-items:flex-start; }
+    .pill { display:inline-flex; gap:7px; align-items:center; padding:6px 11px; border:1px solid rgba(173,135,255,.4); border-radius:999px; background:var(--accent-soft); color:#d1b9ff; font-weight:750; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; }
+    .feature h3 { font-size:clamp(1.75rem,3vw,2.35rem); line-height:1.2; letter-spacing:-.035em; margin: 20px 0 12px; }
+    .feature p { color:#c7bdd5; max-width:560px; margin:0 0 22px; }
+    .visual { display:flex; align-items:center; justify-content:center; padding:30px; background: radial-gradient(circle at 50% 55%, rgba(170,113,255,.19), transparent 65%), linear-gradient(135deg, rgba(151,88,241,.12), transparent); border-left: 1px solid rgba(173,135,255,.13); min-height:320px; }
+    .visual-frame { width:min(100%,355px); aspect-ratio: 1.23; background:#100d1a; border:1px solid #4f3d69; border-radius:16px; padding:16px; box-shadow: 0 25px 55px rgba(0,0,0,.35); transform:rotate(-3deg); }
+    .window-dots { display:flex; gap:5px; margin-bottom:23px; }
+    .window-dots i { width:8px;height:8px;border-radius:50%;background:#4c405d; }
+    .window-dots i:first-child { background:#9d6aff; }
+    .vpn-graphic { display:grid; place-items:center; gap:12px; color:#c7a5ff; }
+    .vpn-graphic svg { width:80px; height:80px; }
+    .vpn-title { font-size:.84rem; font-weight:750; color:#e6dcf7; letter-spacing:.02em; }
+    .vpn-status { font-size:.72rem; border-radius:20px; padding:4px 12px; background:#172c28; color:#a7f4d0; }
+    .vpn-lines { margin-top:18px; display:flex; flex-direction:column; gap:9px; }
+    .vpn-lines span { height:9px; background:#312543; border-radius:4px; }
+    .vpn-lines span:nth-child(2) { width:70%; }
+    .vpn-lines span:nth-child(3) { width:88%; }
+    .tags { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 24px; }
+    .tag { padding:4px 10px; border:1px solid #3b324b; border-radius:7px; background:rgba(255,255,255,.025); color:#c5bad8; font-size:.76rem; font-weight:550; }
+    .btn { appearance:none; font:inherit; border-radius:10px; padding:11px 17px; display:inline-flex; justify-content:center; align-items:center; gap:9px; cursor:pointer; border:1px solid transparent; text-decoration:none; font-size:.88rem; font-weight:780; transition: background .2s, transform .2s; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--accent); color:#160d27; }
+    .btn-primary:hover { background:#c3a5ff; }
+    .btn-quiet { color:#d7c4ff; border-color: #54406d; background: rgba(173,135,255,.07); }
+    .btn-quiet:hover { background:rgba(173,135,255,.16); }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .card { display:flex; flex-direction:column; align-items:flex-start; border-radius:var(--radius); border:1px solid var(--border); background:var(--panel); min-height:238px; padding:27px; transition:border-color .18s, transform .18s, background .18s; }
+    .card:hover { transform:translateY(-3px); border-color:#705498; background:var(--panel-hover); }
+    .card-icon { display:grid; place-items:center; width:41px; height:41px; background:var(--accent-soft); color:#c9aaff; border:1px solid rgba(173,135,255,.2); border-radius:11px; margin-bottom:17px; }
+    .card-icon svg { width:22px; height:22px; stroke:currentColor; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .card h3 { margin:0 0 7px; font-size:1.16rem; letter-spacing:-.02em; }
+    .card p { margin:0 0 18px; font-size:.92rem; color:var(--muted); line-height:1.65; }
+    .card .details { margin-top:auto; color:#ceadff; border:0; background:none; padding:0; cursor:pointer; font:inherit; font-size:.86rem; font-weight:750; }
+    .card .details:hover { text-decoration:underline; }
+    .card .details::after { content: " ↗"; }
+    .footer { border-top:1px solid rgba(255,255,255,.07); color:#978ba9; text-align:center; font-size:.85rem; padding:26px 15px; }
+    dialog { color:var(--text); background:#191423; border:1px solid #5d4778; border-radius:21px; padding:0; width:min(610px,calc(100vw - 32px)); max-height:min(80vh,740px); box-shadow:0 20px 90px rgba(0,0,0,.6); }
+    dialog::backdrop { background:rgba(2,1,7,.82); backdrop-filter:blur(7px); }
+    .modal-inner { padding:clamp(23px,4vw,37px); }
+    .modal-top { display:flex; align-items:flex-start; justify-content:space-between; gap:15px; }
+    .modal-top h2 { font-size:1.7rem; letter-spacing:-.03em; line-height:1.2; margin:0 0 13px; }
+    .close { display:grid; place-items:center; width:36px;height:36px; flex-shrink:0; border-radius:9px; background:#2a2137;color:#e9defa; border:1px solid #49365c; cursor:pointer; font-size:1.4rem; }
+    .modal-inner p { color:#c1b7d1; }
+    .modal-inner h3 { margin:24px 0 9px; font-size:1rem; }
+    .modal-inner ul { padding-left:21px; color:#c1b7d1; }
+    .modal-inner li { margin:7px 0; }
+    .modal-note { border-left:3px solid var(--accent); padding-left:14px; font-size:.87rem; }
+    @media (max-width:720px) {
+      main { padding-top:48px; }
+      .feature { grid-template-columns:1fr; }
+      .visual { border-left:0; border-top:1px solid rgba(173,135,255,.13); min-height:250px; }
+      .visual-frame { max-width:270px; }
+      .cards { grid-template-columns:1fr; }
+      .card { min-height:195px; }
+      .nav-links { gap:14px; }
+      .section { margin-top:51px; }
     }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #f7f1ff, #efe5ff);
-      color: #3f2b63;
-      overflow-x: hidden;
-    }
-    
-    /*============*/
-   /*== NAVBAR ==*/
-  /*============*/
-
-    nav {
-      width: 95%;
-      max-width: 1200px;
-      margin: 20px auto;
-      background: white;
-      border-radius: 20px;
-      padding: 18px 30px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      box-shadow: 0 5px 20px rgba(128, 90, 213, 0.1);
-    }
-
-    nav h1 {
-      color: #6d3fd1;
-      font-size: 28px;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #6d3fd1;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #b388ff;
-    }
-
-  /*==========*/
- /*== HERO ==*/
-/*==========*/
-
-    header {
-      width: 95%;
-      max-width: 1200px;
-      margin: auto;
-
-      background: linear-gradient(135deg, #b388ff, #8e63e6);
-      border-radius: 35px;
-
-      padding: 90px 40px;
-      text-align: center;
-      color: white;
-
-      position: relative;
-      overflow: hidden;
-
-      box-shadow: 0 10px 30px rgba(128, 90, 213, 0.2);
-    }
-
-    header::before {
-      content: "✦";
-      position: absolute;
-      top: 40px;
-      left: 70px;
-      font-size: 35px;
-      opacity: 0.5;
-    }
-
-    header::after {
-      content: "♡";
-      position: absolute;
-      right: 80px;
-      top: 70px;
-      font-size: 40px;
-      opacity: 0.5;
-    }
-
-    header h2 {
-      font-size: 65px;
-      margin-bottom: 15px;
-    }
-
-    header h3 {
-      font-size: 34px;
-      margin-bottom: 20px;
-      color: #f7d7ff;
-    }
-
-    header p {
-      font-size: 22px;
-      opacity: 0.95;
-    }
-
-    .button-container {
-      margin-top: 35px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .hero-button {
-      padding: 14px 28px;
-      border-radius: 15px;
-      text-decoration: none;
-      font-weight: bold;
-      background: rgba(255,255,255,0.15);
-      color: white;
-      border: 2px solid rgba(255,255,255,0.3);
-      transition: 0.3s;
-    }
-
-    .hero-button:hover {
-      background: white;
-      color: #8e63e6;
-    }
-
-  /*=============*/
- /*== SECTION ==*/
-/*=============*/
-
-    section {
-      width: 95%;
-      max-width: 1150px;
-
-      margin: 35px auto;
-      padding: 40px;
-
-      background: rgba(255,255,255,0.75);
-
-      border-radius: 30px;
-
-      backdrop-filter: blur(10px);
-
-      box-shadow: 0 5px 25px rgba(128, 90, 213, 0.08);
-    }
-
-    section h2 {
-      font-size: 40px;
-      margin-bottom: 25px;
-      color: #6d3fd1;
-    }
-
-    section p {
-      line-height: 1.8;
-      font-size: 19px;
-    }
-  /*==============*/
- /*== PROJECTS ==*/
-/*==============*/
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
-
-    .project {
-      background: #ffffff;
-      border: 2px solid #eadcff;
-
-      padding: 30px;
-      border-radius: 25px;
-
-      transition: 0.3s;
-
-      box-shadow: 0 5px 15px rgba(128, 90, 213, 0.08);
-    }
-
-    .project:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(128, 90, 213, 0.15);
-    }
-
-    .project h3 {
-      margin-bottom: 18px;
-      color: #5f2cc8;
-      font-size: 28px;
-    }
-
-    .project p {
-      margin-bottom: 16px;
-      font-size: 17px;
-    }
-
-    .project a {
-      display: inline-block;
-      margin-top: 10px;
-
-      padding: 12px 20px;
-
-      border-radius: 12px;
-
-      text-decoration: none;
-      background: #b388ff;
-      color: white;
-
-      font-weight: bold;
-
-      transition: 0.3s;
-    }
-
-    .project a:hover {
-      background: #8e63e6;
-    }
-     
-  /*============*/
- /*== SKILLS ==*/
-/*============*/
-
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .skill {
-      background: #f0e5ff;
-      color: #6d3fd1;
-
-      padding: 12px 18px;
-
-      border-radius: 999px;
-
-      font-weight: bold;
-
-      border: 2px solid #e2d0ff;
-    }
-
-  /*=============*/
- /*== CONTACT ==*/
-/*=============*/
-
-    .contact-links p {
-      margin-bottom: 15px;
-      font-size: 18px;
-    }
-
-    .contact-links a {
-      color: #7b4de2;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .contact-links a:hover {
-      color: #b388ff;
-    }
-
-    /* FOOTER */
-
-    footer {
-      text-align: center;
-      padding: 35px;
-      color: #8e63e6;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-  /*============*/
- /*== MOBILE ==*/
-/*===========*/
-
-    @media (max-width: 768px) {
-
-      nav {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      header h2 {
-        font-size: 42px;
-      }
-
-      header h3 {
-        font-size: 24px;
-      }
-
-      section h2 {
-        font-size: 32px;
-      }
-    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .btn,.card { transition:none; } }
   </style>
-
-<!--===================-->
-<!--==== HTML CODE ====-->
-<!--===================-->
-  
 </head>
 <body>
+  <header class="topbar"><nav class="nav container" aria-label="Main navigation">
+    <a class="brand" href="#top">&lt;portfolio<span>/</span>&gt;</a>
+    <div class="nav-links"><a href="#featured">Featured</a><a href="#cybersecurity">Cybersecurity</a><a href="#networking">Cloud</a><a href="#programming">Programming</a></div>
+  </nav></header>
+  <main id="top" class="container">
+    <div class="eyebrow">Selected work &amp; hands-on labs</div>
+    <h1>My <span class="accent">Projects.</span></h1>
+    <p class="intro">A collection of practical projects exploring cybersecurity operations, network analysis, cloud infrastructure, and automation.</p>
 
-<!--================-->
-<!--==== Header ====-->
-<!--================-->
-    
-  
-  <nav>
-    <h1>✦ Citlaly Cedeno</h1>
+    <section class="section" id="featured" aria-labelledby="featured-heading">
+      <div class="section-heading"><h2 id="featured-heading">Featured Project</h2><small>Internship experience</small></div>
+      <article class="feature">
+        <div class="feature-content">
+          <span class="pill">★ Internship Project</span>
+          <h3>Cybertection<br />Secure VPN Management System</h3>
+          <p>Security-focused application development involving VPN connections, user authentication, and administrative monitoring. Explore the architecture, implementation, and lessons learned.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Firebase</span><span class="tag">WireGuard</span><span class="tag">REST APIs</span></div>
+          <button class="btn btn-primary" data-project="cybertection">View case study <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="visual" aria-hidden="true"><div class="visual-frame"><div class="window-dots"><i></i><i></i><i></i></div><div class="vpn-graphic"><svg viewBox="0 0 80 80"><path d="M40 6 65 16v20c0 17-10 28-25 36C25 64 15 53 15 36V16L40 6Z" fill="rgba(173,135,255,.12)" stroke="currentColor" stroke-width="2.7"/><rect x="28" y="35" width="24" height="19" rx="4" stroke="currentColor" stroke-width="2.7"/><path d="M33 35v-6a7 7 0 0 1 14 0v6" stroke="currentColor" stroke-width="2.7"/></svg><span class="vpn-title">VPN Management</span><span class="vpn-status">● Secure connection</span></div><div class="vpn-lines"><span></span><span></span><span></span></div></div></div>
+      </article>
+    </section>
 
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header>
-
-    <h2>Citlaly Cedeno ♡</h2>
-
-    <h3>Cybersecurity Student</h3>
-
-    <p>
-      Networking • Technical Support • Troubleshooting Hardware • Ticketing System and Documentation 
-    </p>
-
-    <div class="button-container">
-      <a class="hero-button" 
-        href="pdfs/resume.pdf"
-        target="_blank">
-        Download Resume
-      </a>
-
-      <a class="hero-button" 
-        href="https://github.com/citlalycedeno"
-        target="_blank">
-        View GitHub
-      </a>
-    </div>
-
-  </header>
-
-  <section id="about">
-
-    <h2>♡ About Me</h2>
-
-    <p>
-  I am a Cybersecurity student with a passion for technology, networking, and problem solving. 
-  Alongside my experience working in an IT Help Desk environment, I have developed hands-on 
-  skills in technical support, cloud computing, network configuration, and troubleshooting 
-  through both real-world experience and lab projects. I enjoy learning about new technologies, 
-  building practical IT skills, and solving hardware and software issues while continuing to grow 
-  my knowledge in cybersecurity and networking.
-    </p>
-
-<!--===================-->
-<!-- ==== PROJECTS ====-->
-<!--===================-->
-    
-  </section>
-
-  <section id="projects">
-
-    <h2>✦ Projects</h2>
-
-    <div class="projects-grid">
-
-      <div class="project">
-
-        <h3>Packet Tracer Projects</h3>
-
-        <p>
-          ●	Connect a Router to a LAN Lab
-          ●	Subnet an IPv4 Network Lab
-          ● Troubleshoot Default Gateways Lab
-
-        </p>
-
-        <p>
-          <strong>Skills:</strong>
-          CLI commands, Router configuration, network troubleshooting, and subnetting.
-        </p>
-
-        <a href="packet-tracer-labs.html">
-          View
-        </a>
-
+    <section class="section" id="cybersecurity" aria-labelledby="cyber-heading">
+      <div class="section-heading"><h2 id="cyber-heading">Cybersecurity Projects</h2><small>Security analysis &amp; investigations</small></div>
+      <div class="cards">
+        <article class="card"><span class="card-icon" data-icon="shield"></span><h3>Sysmon Investigation</h3><p>Investigated Windows security events and suspicious activity using Sysmon and Event Viewer.</p><button class="details" data-project="sysmon">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="scan"></span><h3>Nmap Security Assessment</h3><p>Performed network discovery, TCP/UDP port scanning, and service identification in a virtual lab.</p><button class="details" data-project="nmap">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="mail"></span><h3>Phishing Analysis</h3><p>Analyzed simulated phishing emails, suspicious URLs, attachments, and impersonation techniques.</p><button class="details" data-project="phishing">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="terminal"></span><h3>Linux Log Analysis</h3><p>Used Bash scripts to process Apache access logs and generate structured reports.</p><button class="details" data-project="logs">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="activity"></span><h3>Velociraptor Investigation</h3><p>Explored endpoint forensics with VQL queries and PrintNightmare-focused file investigation.</p><button class="details" data-project="velociraptor">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="wifi"></span><h3>Wireshark &amp; tcpdump Analysis</h3><p>Planned lab: capture Telnet traffic and analyze plaintext credentials in a PCAP file.</p><button class="details" data-project="wireshark">Project details</button></article>
       </div>
+    </section>
 
-      <div class="project">
-
-        <h3>AWS Cloud Labs</h3>
-
-        <p>
-          ● AWS RDS Database & Web Application Lab	
-          ●	AWS Build your VPC and Launch a Web Server
-
-        </p>
-
-        <p>
-          <strong>Skills:</strong>
-          AWS, IAM, EC2, S3, VPC, cloud security
-        </p>
-
-        <a href="aws-labs.html">
-          View
-        </a>
-
+    <section class="section" id="networking" aria-labelledby="network-heading">
+      <div class="section-heading"><h2 id="network-heading">Networking &amp; Cloud Projects</h2><small>Infrastructure &amp; configuration</small></div>
+      <div class="cards">
+        <article class="card"><span class="card-icon" data-icon="network"></span><h3>Cisco Packet Tracer Labs</h3><p>Configured routers and LANs, practiced IPv4 subnetting, and troubleshot default gateway issues.</p><button class="details" data-project="cisco">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="cloud"></span><h3>AWS Cloud Labs</h3><p>Built VPC and web server infrastructure and explored RDS-based application deployment.</p><button class="details" data-project="aws">Project details</button></article>
       </div>
+    </section>
 
-      <div class="project">
-
-        <h3>Python Projects</h3>
-
-        <p>
-          ● Number Guessing Game
-          ●	Hangman Game
-        </p>
-
-        <p>
-          <strong>Skills:</strong>
-           Python, scripting, automation, problem solving, command line
-        </p>
-
-        <a href="python-projects.html">
-          View
-        </a>
-
+    <section class="section" id="programming" aria-labelledby="program-heading">
+      <div class="section-heading"><h2 id="program-heading">Programming &amp; Automation</h2><small>Scripting &amp; problem-solving</small></div>
+      <div class="cards">
+        <article class="card"><span class="card-icon" data-icon="code"></span><h3>Python Projects</h3><p>Built command-line games to practice control flow, functions, and core programming concepts.</p><button class="details" data-project="python">Project details</button></article>
+        <article class="card"><span class="card-icon" data-icon="terminal"></span><h3>Bash System Administration</h3><p>Tested menu-driven scripts that collect Linux system information and automate CLI tasks.</p><button class="details" data-project="bash">Project details</button></article>
       </div>
-
-    </div>
-
-     </section>
-
-<!--======================-->
-<!--==== ACHIEVEMENTS ====-->
-<!--======================-->
-
-  <section id="achievements">
-
-    <h2>✦ Achievements</h2>
-
-    <div class="projects-grid">
-
-      <div class="project">
-
-        <h3>Introduction to Automation & Control</h3>
-
-        <p>
-          ●	Completed a workshop covering basic IT concepts
-
-        </p>
-        
-        <a href="pdfs/ot-credential.pdf">
-          View Credential
-        </a>
-
-      </div>
-
-      <div class="project">
-
-        <h3>Basic Network Specialist</h3>
-
-        <p>
-          ●	Completed classes covering network fundamentals
-        </p>
-
-        <a href="pdfs/cnse-cert.pdf">
-          View Certificate
-        </a>
-      </div>
-      
-    </div>
-    
-<!--================-->
-<!--==== SKILLS ====-->
-<!--================-->
-    
-  </section>
-
-  <section id="skills">
-
-    <h2>♡ Technical Skills</h2>
-
-    <div class="skills">
-
-      <div class="skill">Networking</div>
-      <div class="skill">VLANs</div>
-      <div class="skill">Cisco IOS</div>
-      <div class="skill">TCP/IP</div>
-      <div class="skill">AWS</div>
-      <div class="skill">Cloud Computing</div>
-      <div class="skill">Intune</div>
-      <div class="skill">Entra ID</div>
-      <div class="skill">Python</div>
-      <div class="skill">Windows Admin</div>
-      <div class="skill">Troubleshooting</div>
-      <div class="skill">Technical Support</div>
-
-    </div>
-
-<!--==================-->
-<!--==== CONTACT =====-->
-<!--==================-->
-  </section>
-
-  <section id="contact">
-
-    <h2>✦ Contact</h2>
-
-    <div class="contact-links">
-
-      <p>
-        Email:
-        <a href="mailto:cedeno.citlaly01@gmail.com"
-          target="_blank">
-          cedeno.citlaly01@gmail.com
-        </a>
-      </p>
-
-      <p>
-        GitHub:
-        <a href="https://github.com/citlalycedeno"
-          target="_blank">
-          GitHub
-        </a>
-      </p>
-      
-      <p>
-        LinkedIn:
-        <a href="https://www.linkedin.com/in/leslie-cedeno/"
-          target="_blank">
-          LinkedIn
-        </a>
-      </p>
-
-    </div>
-
-  </section>
-
-  <footer>
-    ♡ Made with lots of coffee & purple ♡
-  </footer>
-
+    </section>
+  </main>
+  <footer class="footer">Designed for a cybersecurity portfolio · Edit project content and add your own screenshots / repositories before publishing.</footer>
+  <dialog id="project-dialog" aria-labelledby="modal-title"><div class="modal-inner"><div class="modal-top"><h2 id="modal-title"></h2><button class="close" aria-label="Close project details" id="close-modal">×</button></div><p id="modal-summary"></p><div class="tags" id="modal-tags"></div><h3>Project highlights</h3><ul id="modal-highlights"></ul><p class="modal-note">Portfolio tip: add your own screenshots, sanitized technical findings, and a GitHub repository or PDF case study here. Only publish work you are authorized to share.</p></div></dialog>
+  <script>
+    const icons = {
+      shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>',
+      scan: '<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><path d="m16 16 3 3"/>',
+      mail: '<rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/>',
+      terminal: '<rect x="2" y="3" width="20" height="18" rx="3"/><path d="m6 9 4 3-4 3M12 16h5"/>',
+      activity: '<path d="M3 12h4l3-7 4 14 3-7h4"/>',
+      wifi: '<path d="M2 9a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0M8 15a6 6 0 0 1 8 0"/><circle cx="12" cy="19" r="1"/>',
+      network: '<rect x="10" y="2" width="4" height="4" rx="1"/><rect x="2" y="18" width="5" height="4" rx="1"/><rect x="10" y="18" width="5" height="4" rx="1"/><rect x="18" y="18" width="4" height="4" rx="1"/><path d="M12 6v6M4.5 18v-6h15v6M12 12v6"/>',
+      cloud: '<path d="M7 18h11a4 4 0 0 0 .5-8A7 7 0 0 0 5 11a3.5 3.5 0 0 0 2 7Z"/>',
+      code: '<path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/>'
+    };
+    document.querySelectorAll('[data-icon]').forEach(node => {
+      node.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[node.dataset.icon] || icons.shield}</svg>`;
+    });
+    const projects = {
+      cybertection: { title:'Cybertection — Secure VPN Management System', summary:'A security-focused internship project combining application development, VPN management, and authentication.', tags:['Python','Flask','Firebase','WireGuard','REST APIs','PyQt5'], highlights:['Describe the features you personally developed and tested.','Explain how authentication, VPN peer management, and administration components fit together.','Include only architecture diagrams, test results, and code approved for public sharing.'] },
+      sysmon: { title:'Sysmon Investigation', summary:'Windows event-log investigations in TryHackMe practice environments.', tags:['Sysmon','Windows Event Viewer','Incident Investigation'], highlights:['Reviewed Sysmon events for suspicious behavior.','Investigated simulated security scenarios using recorded events.','Document detection observations and evidence in a short case study.'] },
+      nmap: { title:'Nmap Security Assessment', summary:'Network reconnaissance against authorized virtual-lab hosts.', tags:['Nmap','Zenmap','Ubuntu','TCP/UDP'], highlights:['Discovered lab hosts and enumerated TCP/UDP ports.','Used service/version detection and OS fingerprinting.','Documented exposed services, security concerns, and mitigation recommendations.'] },
+      phishing: { title:'Phishing Analysis', summary:'Analysis of simulated phishing emails and social-engineering attempts.', tags:['Phishing','URL Inspection','Email Security'], highlights:['Examined suspicious sender identities, links, and attachments.','Identified impersonation, redirection, and credential-harvesting indicators.','Explained findings without opening unsafe links or executing payloads.'] },
+      logs: { title:'Linux Log Analysis & Bash Automation', summary:'Apache access-log processing and automated reporting using Bash.', tags:['Bash','Linux','Apache','JSON'], highlights:['Adapted and tested access_log_analysis.sh.','Processed request data and analyzed access patterns.','Validated report and JSON output from a revised script.'] },
+      velociraptor: { title:'Velociraptor Investigation', summary:'Endpoint forensic investigation through Velociraptor and VQL.', tags:['Velociraptor','VQL','Windows Forensics'], highlights:['Constructed a VQL query to inspect specific driver paths.','Investigated a PrintNightmare-related file detection scenario.','Practiced collecting endpoint evidence in a training environment.'] },
+      wireshark: { title:'Wireshark & tcpdump Analysis (Planned)', summary:'A proposed isolated lab showing how Telnet sends unencrypted authentication data.', tags:['Wireshark','tcpdump','PCAP','Telnet'], highlights:['Capture Telnet packets with tcpdump in a controlled VM environment.','Follow the TCP stream in Wireshark to inspect plaintext test credentials.','Explain why encrypted SSH is the safer alternative.','Mark this project as completed only after performing and documenting the lab.'] },
+      cisco: { title:'Cisco Packet Tracer Labs', summary:'Hands-on network configuration and troubleshooting exercises.', tags:['Packet Tracer','IPv4','Subnetting','Routers'], highlights:['Connected a router to a LAN.','Designed and tested IPv4 subnets.','Diagnosed default gateway connectivity problems.'] },
+      aws: { title:'AWS Cloud Labs', summary:'AWS cloud networking and application infrastructure practice.', tags:['AWS','VPC','EC2','RDS','IAM'], highlights:['Built a VPC and launched a web server.','Practiced RDS database and web application deployment.','Explored cloud availability and access control concepts.'] },
+      python: { title:'Python Projects', summary:'Beginner Python applications that build programming fundamentals.', tags:['Python','CLI','Control Flow'], highlights:['Developed a number guessing game.','Developed a Hangman game.','Practiced input handling, loops, conditions, and functions.'] },
+      bash: { title:'Bash System Administration', summary:'Linux system-information and administration scripting assignments.', tags:['Bash','Linux','Automation'], highlights:['Executed and tested the sysinfo_tool.sh menu options.','Gathered operating system and networking information.','Troubleshot scripts and documented command output.'] }
+    };
+    const dialog = document.getElementById('project-dialog');
+    let lastTrigger = null;
+    document.querySelectorAll('[data-project]').forEach(btn => btn.addEventListener('click', () => {
+      const data = projects[btn.dataset.project];
+      if (!data) return;
+      lastTrigger = btn;
+      document.getElementById('modal-title').textContent = data.title;
+      document.getElementById('modal-summary').textContent = data.summary;
+      document.getElementById('modal-tags').replaceChildren(...data.tags.map(t => { const n = document.createElement('span'); n.className='tag'; n.textContent=t; return n; }));
+      document.getElementById('modal-highlights').replaceChildren(...data.highlights.map(t => { const n=document.createElement('li'); n.textContent=t; return n; }));
+      dialog.showModal();
+    }));
+    document.getElementById('close-modal').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => lastTrigger?.focus());
+  </script>
 </body>
 </html>

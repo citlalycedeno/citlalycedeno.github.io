@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0b0912" />
-  <meta name="description" content="Cybersecurity, cloud, networking, and programming portfolio projects." />
-  <title>Projects | Cybersecurity Portfolio</title>
+  <meta name="description" content="Citlaly Cedeno’s cybersecurity and IT portfolio, featuring hands-on security, networking, cloud, and programming projects." />
+  <title>Citlaly Cedeno | Cybersecurity &amp; IT Portfolio</title>
   <style>
     :root {
       color-scheme: dark;
@@ -94,6 +94,20 @@
     .modal-inner ul { padding-left:21px; color:#c1b7d1; }
     .modal-inner li { margin:7px 0; }
     .modal-note { border-left:3px solid var(--accent); padding-left:14px; font-size:.87rem; }
+
+    /* About section */
+    .about { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(240px,.75fr); gap:clamp(26px,5vw,72px); align-items:center; padding:clamp(30px,5vw,58px); border:1px solid var(--border); border-radius:24px; background:linear-gradient(120deg,#181222,#100d17); }
+    .about h1 { margin:12px 0 18px; font-size:clamp(2.7rem,5vw,4.1rem); }
+    .about p { color:var(--muted); max-width:670px; }
+    .about .lead { font-size:1.08rem; color:#e4dcee; }
+    .about-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+    .about-photo { width:100%; aspect-ratio:4/5; border-radius:18px; border:1px dashed #735c98; background:radial-gradient(circle at 50% 35%,rgba(173,135,255,.14),transparent 66%),#221a30; display:grid; place-content:center; justify-items:center; gap:11px; text-align:center; color:#c8b5e4; overflow:hidden; }
+    .about-photo svg { width:50px; height:50px; stroke:currentColor; fill:none; stroke-width:1.4; }
+    .about-photo small { font-size:.8rem; max-width:190px; }
+    .about-photo img { display:block; width:100%; height:100%; object-fit:cover; }
+    .about-photo:has(img) { display:block; border-style:solid; }
+    .resume-note { font-size:.78rem; color:#988baa; margin-top:12px; }
+    @media (max-width:720px) { .about { grid-template-columns:1fr; } .about-photo { max-width:320px; aspect-ratio:4/4; margin-inline:auto; } .nav-links { flex-wrap:wrap; justify-content:flex-end; row-gap:5px; } .nav { padding-block:12px; } }
     @media (max-width:720px) {
       main { padding-top:48px; }
       .feature { grid-template-columns:1fr; }
@@ -109,13 +123,37 @@
 </head>
 <body>
   <header class="topbar"><nav class="nav container" aria-label="Main navigation">
-    <a class="brand" href="#top">&lt;portfolio<span>/</span>&gt;</a>
-    <div class="nav-links"><a href="#featured">Featured</a><a href="#cybersecurity">Cybersecurity</a><a href="#networking">Cloud</a><a href="#programming">Programming</a></div>
+    <a class="brand" href="#top">citlaly<span>.</span>cedeno</a>
+    <div class="nav-links"><a href="#about">About</a><a href="#featured">Featured</a><a href="#cybersecurity">Cybersecurity</a><a href="#networking">Cloud</a><a href="#programming">Programming</a></div>
   </nav></header>
   <main id="top" class="container">
-    <div class="eyebrow">Selected work &amp; hands-on labs</div>
-    <h1>My <span class="accent">Projects.</span></h1>
-    <p class="intro">A collection of practical projects exploring cybersecurity operations, network analysis, cloud infrastructure, and automation.</p>
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="about-copy">
+        <div class="eyebrow">About me</div>
+        <h1 id="about-heading">Who <span class="accent">Am I?</span></h1>
+        <p class="lead">Hi, I’m Citlaly Cedeno, a Computer Science and Cybersecurity student with hands-on IT work experience and a passion for security operations.</p>
+        <p>I'm building practical skills in network security, Linux, cloud infrastructure, and scripting through technical coursework, labs, and projects. I enjoy troubleshooting complex problems, investigating security activity, and learning how to protect the systems people depend on.</p>
+        <p>I'm especially interested in opportunities where I can grow as a cybersecurity professional, contribute to a security team, and keep developing my technical skills.</p>
+        <div class="about-actions">
+          <!-- Upload your resume as pdfs/resume.pdf, or change this link to its real filename. -->
+          <a class="btn btn-primary" href="pdfs/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View resume PDF in a new tab">View Resume <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-quiet" href="#featured">Explore Projects <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="about-photo" aria-label="Placeholder for a professional portrait">
+        <!-- To add your photo, replace the placeholder contents with:
+             <img src="images/profile.jpg" alt="Portrait of Citlaly Cedeno" />
+             Then upload images/profile.jpg to GitHub. -->
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="9"/><path d="M8 43c1-12 8-18 16-18s15 6 16 18"/></svg>
+        <strong>Your Photo Here</strong>
+        <small>Replace this placeholder with your portrait</small>
+      </div>
+    </section>
+    <section class="section" aria-label="Projects introduction">
+      <div class="eyebrow">Selected work &amp; hands-on labs</div>
+      <h2 style="font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.045em;margin:14px 0 12px;">My <span class="accent">Projects.</span></h2>
+      <p class="intro">A collection of practical projects exploring cybersecurity operations, network analysis, cloud infrastructure, and automation.</p>
+    </section>
 
     <section class="section" id="featured" aria-labelledby="featured-heading">
       <div class="section-heading"><h2 id="featured-heading">Featured Project</h2><small>Internship experience</small></div>
@@ -159,7 +197,7 @@
       </div>
     </section>
   </main>
-  <footer class="footer">Designed for a cybersecurity portfolio · Edit project content and add your own screenshots / repositories before publishing.</footer>
+  <footer class="footer">© 2026 Citlaly Cedeno · Cybersecurity &amp; IT Portfolio</footer>
   <dialog id="project-dialog" aria-labelledby="modal-title"><div class="modal-inner"><div class="modal-top"><h2 id="modal-title"></h2><button class="close" aria-label="Close project details" id="close-modal">×</button></div><p id="modal-summary"></p><div class="tags" id="modal-tags"></div><h3>Project highlights</h3><ul id="modal-highlights"></ul><p class="modal-note">Portfolio tip: add your own screenshots, sanitized technical findings, and a GitHub repository or PDF case study here. Only publish work you are authorized to share.</p></div></dialog>
   <script>
     const icons = {

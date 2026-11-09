@@ -94,8 +94,11 @@
     .modal-inner ul { padding-left:21px; color:#c1b7d1; }
     .modal-inner li { margin:7px 0; }
     .modal-note { border-left:3px solid var(--accent); padding-left:14px; font-size:.87rem; }
-
-    /* About section */
+    
+    /* ============= */
+   /* About section */
+  /* ============= */
+    
     .about { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(240px,.75fr); gap:clamp(26px,5vw,72px); align-items:center; padding:clamp(30px,5vw,58px); border:1px solid var(--border); border-radius:24px; background:linear-gradient(120deg,#181222,#100d17); }
     .about h1 { margin:12px 0 18px; font-size:clamp(2.7rem,5vw,4.1rem); }
     .about p { color:var(--muted); max-width:670px; }
@@ -122,20 +125,25 @@
   </style>
 </head>
 <body>
+    /* -------- */
+   /* Featured */
+  /* -------- */
   <header class="topbar"><nav class="nav container" aria-label="Main navigation">
     <a class="brand" href="#top">citlaly<span>.</span>cedeno</a>
     <div class="nav-links"><a href="#about">About</a><a href="#featured">Featured</a><a href="#cybersecurity">Cybersecurity</a><a href="#networking">Cloud</a><a href="#programming">Programming</a></div>
   </nav></header>
+    /* ------ */
+   /* Abt me */
+  /* ------ */
   <main id="top" class="container">
     <section class="about" id="about" aria-labelledby="about-heading">
       <div class="about-copy">
         <div class="eyebrow">About me</div>
         <h1 id="about-heading">Who <span class="accent">Am I?</span></h1>
-        <p class="lead">Hi, I’m Citlaly Cedeno, a Computer Science and Cybersecurity student with hands-on IT work experience and a passion for security operations.</p>
+        <p class="lead">Hi! I’m Citlaly Cedeno, a Computer Science and Cybersecurity student with hands-on IT work experience and a passion for security operations.</p>
         <p>I'm building practical skills in network security, Linux, cloud infrastructure, and scripting through technical coursework, labs, and projects. I enjoy troubleshooting complex problems, investigating security activity, and learning how to protect the systems people depend on.</p>
         <p>I'm especially interested in opportunities where I can grow as a cybersecurity professional, contribute to a security team, and keep developing my technical skills.</p>
         <div class="about-actions">
-          <!-- Upload your resume as pdfs/resume.pdf, or change this link to its real filename. -->
           <a class="btn btn-primary" href="pdfs/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View resume PDF in a new tab">View Resume <span aria-hidden="true">↗</span></a>
           <a class="btn btn-quiet" href="#featured">Explore Projects <span aria-hidden="true">↓</span></a>
         </div>
